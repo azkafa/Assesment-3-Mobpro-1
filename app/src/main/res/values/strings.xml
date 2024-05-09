@@ -1,0 +1,52 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Order Pizza Application</string>
+    <string name="add">Buy</string>
+    <string name="username">Pizza Nom-Nom</string>
+    <string name="tentang_aplikasi">About App</string>
+    <string name="copyright" translatable="false">Aplikasi Order Pizza adalah sebuah aplikasi Android yang pengguna bisa memilih pizza sesuka hati, pengguna dapat menentukan jumlah pizza yang diinginkan dan memilih topping tambahan sesuai dengan preferensi mereka. Selain itu, pengguna juga dapat memasukkan alamat pengiriman tempat pizza. Setelah selesai melakukan pemesanan, pengguna dapat membagikan resi pembelian melalui berbagai platform media sosial.\n\nAplikasi Order Pizza ini dibuat untuk Assesment 1 Mobpro 1.\n\nCopyright © 2024 - Now Azka Faris Akbar.\nAll rights reserved.</string>
+    <string name="kembali">Kembali</string>
+    <string name="pizza_image" translatable="false" />
+    <string name="jumlah_pizza">Order Quantity:</string>
+    <string name="topping">Additional Free Toppings (Required):</string>
+    <string name="alamat">Shipping address:</string>
+    <string name="bayar">Pay</string>
+    <string name="add_pizza" translatable="false">Menambah Pizza</string>
+    <string name="payment" translatable="false">Bayar Pizza</string>
+    <string name="share">Print Receipt</string>
+    <string name="total">Total Price:</string>
+    <string name="topping_2" translatable="false">Topping:</string>
+    <string name="add_2">Add</string>
+    <string name="share_message_template">Total Price: %1$s\nOrder Quantity: %2$d\nTopping: %3$s\nShipping Address: %4$s</string>
+
+    <string name="error_quantity_zero">Order quantity must be more than 0.</string>
+    <string name="error_no_topping">Please choose additional toppings.</string>
+    <string name="error_empty_address">Please enter a shipping address.</string>
+    <string name="result_message">Order Quantity: %1$d\nTopping: %2$s\nShipping address: %3$s\nTotal price: %4$s</string>
+    <string name="no_topping">nothing</string>
+
+    <string name="settings" translatable="false">Setting</string>
+    <string name="address" translatable="false">address\n</string>
+    <string name="Payment" translatable="false">Payment\n</string>
+    <string name="delivery_address" translatable="false">Delivery Address\n</string>
+    <string name="payment_method" translatable="false">Payment Method\n</string>
+    <string name="add_address" translatable="false">Add Address</string>
+    <string name="list_alamat_kosong" translatable="false">alamat belum di tambahkan\n</string>
+    <string name="x_diklik" translatable="false">%1$s diklik!</string>
+    <string name="tambah_alamat" translatable="false">Tambah Alamat</string>
+    <string name="nama" translatable="false">Nama Lengkap</string>
+    <string name="alamatt" translatable="false">Alamat Lengkap</string>
+    <string name="simpan" translatable="false">Simpan</string>
+    <string name="edit_alamat" translatable="false">Ubah Alamat</string>
+    <string name="invalid" translatable="false">Mohon isi nama, alamat, dan tipe terlebih dahulu!</string>
+    <string name="lainnya" translatable="false">Opsi lainnya</string>
+    <string name="hapus" translatable="false">Hapus Alamat</string>
+    <string name="dropdown" translatable="false" tools:ignore="DuplicateDefinition">Tipe Alamat</string>
+    <string name="expand_dropdown" translatable="false">Memilih</string>
+    <string name="tandai_alamat_utama" translatable="false">Tandai Sebagai Alamat utama</string>
+    <string name="pesan_hapus" translatable="false">Hapus Alamat ini?</string>
+    <string name="tombol_hapus" translatable="false">Hapus</string>
+    <string name="tombol_batal" translatable="false">Batal</string>
+    <string name="list" translatable="false">Tampilan list</string>
+    <string name="grid" translatable="false">Tampilan grid</string>
+
+</resources>
