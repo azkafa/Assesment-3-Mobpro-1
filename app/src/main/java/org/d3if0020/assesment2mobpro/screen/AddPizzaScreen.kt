@@ -54,7 +54,7 @@ import org.d3if0020.assesment2mobpro.data.Pizza
 import org.d3if0020.assesment2mobpro.data.Topping
 import org.d3if0020.assesment2mobpro.data.pizzaList
 import org.d3if0020.assesment2mobpro.navigation.Screen
-import org.d3if0020.assesment2mobpro.ui.theme.PizzaHutAppTheme
+import org.d3if0020.assesment2mobpro.ui.theme.OrderPizzaTheme
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.util.Locale
@@ -130,7 +130,7 @@ fun AddPizzaScreen(navController: NavHostController, pizza: Pizza?) {
                     Text(text = pizza?.name ?: stringResource(id = R.string.add_pizza))
                 },
                 backgroundColor = MaterialTheme.colors.primary,
-                contentColor = MaterialTheme.colors.primary
+                contentColor = Color.White
             )
         }
 
@@ -352,7 +352,7 @@ fun IconPicker(showIcon: Boolean, message: String) {
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
 @Composable
 fun AddPizzaScreenPreview() {
-    PizzaHutAppTheme {
+    OrderPizzaTheme {
         val pizza = pizzaList.first()
         AddPizzaScreen(rememberNavController(), pizza)
     }

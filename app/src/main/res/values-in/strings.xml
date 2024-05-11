@@ -19,4 +19,27 @@
     <string name="error_empty_address">Silakan masukkan alamat pengiriman.</string>
     <string name="result_message">Jumlah Pesanan: %1$d\nTopping: %2$s\nAlamat Pengiriman: %3$s\nTotal Harga: %4$s</string>
     <string name="no_topping">Tidak ada</string>
+
+    <string name="settings">Pengaturan</string>
+    <string name="address">Alamat</string>
+    <string name="payment_2">Pembayaran</string>
+    <string name="delivery_address">Alamat Pengiriman</string>
+    <string name="payment_method">Method Pembayaran</string>
+    <string name="add_address">Tambah Alamat</string>
+    <string name="list_alamat_kosong">"Alamat belum ditambahkan "</string>
+    <string name="x_diklik">"%1$s diklik! "</string>
+    <string name="tambah_alamat">"Tambahkan alamat "</string>
+    <string name="nama">Nama Lengkap</string>
+    <string name="nama_alamat">Alamat Lengkap</string>
+    <string name="simpan">Simpan</string>
+    <string name="edit_alamat">"Ubah Alamat "</string>
+    <string name="invalid">Mohon isi nama, alamat, dan tipe terlebih dahulu!</string>
+    <string name="lainnya">Opsi lainnya</string>
+    <string name="hapus">Hapus Alamat</string>
+    <string name="dropdown">Tipe Alamat</string>
+    <string name="expand_dropdown">Memilih</string>
+    <string name="tandai_alamat_utama">"Tandai Sebagai Alamat Utama "</string>
+    <string name="pesan_hapus">"Hapus Alamat ini? "</string>
+    <string name="tombol_hapus">Hapus</string>
+    <string name="tombol_batal">Batal</string>
 </resources>

@@ -43,7 +43,6 @@ class DetailViewModel(private val dao: AddressDao) : ViewModel() {
                 type = type,
                 isMain = isMain
             )
-
             dao.update(address)
         }
     }

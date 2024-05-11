@@ -1,7 +1,6 @@
 package org.d3if0020.assesment2mobpro.screen
 
 import android.content.res.Configuration
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -59,7 +58,7 @@ import org.d3if0020.assesment2mobpro.database.AddressDb
 import org.d3if0020.assesment2mobpro.data.Address
 import org.d3if0020.assesment2mobpro.model.MainViewModel
 import org.d3if0020.assesment2mobpro.navigation.Screen
-import org.d3if0020.assesment2mobpro.ui.theme.PizzaHutAppTheme
+import org.d3if0020.assesment2mobpro.ui.theme.OrderPizzaTheme
 import org.d3if0020.assesment2mobpro.util.SettingsDataStore
 import org.d3if0020.assesment2mobpro.util.ViewModelFactory
 
@@ -73,7 +72,7 @@ fun DeliveryAddressScreen(navController: NavHostController) {
         topBar = {
             TopAppBar(
                 title = {
-                    Text(text = stringResource(id = R.string.app_name))
+                    Text(text = stringResource(id = R.string.address))
                 },
                 navigationIcon = {
                     IconButton(onClick = { navController.navigateUp() }) {
@@ -85,7 +84,7 @@ fun DeliveryAddressScreen(navController: NavHostController) {
                     }
                 },
                 backgroundColor = MaterialTheme.colors.primary,
-                contentColor = MaterialTheme.colors.primary,
+                contentColor = Color.White,
                 actions = {
                     IconButton(onClick = {
                         CoroutineScope(Dispatchers.IO).launch {
@@ -188,8 +187,6 @@ fun ScreenContent(showList: Boolean, modifier: Modifier, navController: NavHostC
     }
 }
 
-
-
 @Composable
 fun ListItem(
     address: Address,
@@ -262,9 +259,12 @@ fun GridItem(address: Address, onClick: () -> Unit) {
     val primaryColor = MaterialTheme.colors.primary
     val contentColor = MaterialTheme.colors.onPrimary
     Card(
-        modifier = Modifier.fillMaxWidth().clickable { onClick() },
-        border = BorderStroke(1.dp, Color.Gray),
-        backgroundColor = MaterialTheme.colors.surface,
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable { onClick() }
+            .padding(1.dp),
+        elevation = 10.dp,
+        shape = RoundedCornerShape(8.dp)
     ) {
         Column(
             modifier = Modifier.padding(8.dp),
@@ -321,7 +321,7 @@ fun GridItem(address: Address, onClick: () -> Unit) {
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
 @Composable
 fun DeliverAddressPreview() {
-    PizzaHutAppTheme {
+    OrderPizzaTheme {
         DeliveryAddressScreen(rememberNavController())
     }
 }

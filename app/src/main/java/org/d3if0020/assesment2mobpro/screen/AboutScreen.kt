@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import org.d3if0020.assesment2mobpro.R
-import org.d3if0020.assesment2mobpro.ui.theme.PizzaHutAppTheme
+import org.d3if0020.assesment2mobpro.ui.theme.OrderPizzaTheme
 
 
 @Composable
@@ -40,7 +40,7 @@ fun AboutScreen(navController: NavHostController) {
                     Text(text = stringResource(id = R.string.tentang_aplikasi))
                 },
                 backgroundColor = MaterialTheme.colors.primary,
-                contentColor = MaterialTheme.colors.primary
+                contentColor = Color.White
             )
         }
     ) { padding ->
@@ -58,7 +58,7 @@ fun AboutScreen(navController: NavHostController) {
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
 @Composable
 fun AboutScreenPreview() {
-    PizzaHutAppTheme {
+    OrderPizzaTheme {
         AboutScreen(rememberNavController())
     }
 }

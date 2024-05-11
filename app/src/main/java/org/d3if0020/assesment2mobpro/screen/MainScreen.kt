@@ -39,11 +39,15 @@ import org.d3if0020.assesment2mobpro.ui.theme.*
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter", "UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MainScreen(navController: NavHostController) {
-    val menuList =
-        listOf("Starter", "Asian", "Classic")
+    val menuList = listOf("All", "Starter", "Asian", "Classic")
     val scrollState = rememberScrollState()
-    var menuState by rememberSaveable{ mutableStateOf("Starter") }
-    val pizzaList = pizzaList
+    var menuState by rememberSaveable { mutableStateOf("All") }
+
+    val filteredPizzaList = if (menuState == "All") {
+        pizzaList
+    } else {
+        pizzaList.filter { it.category == menuState }
+    }
 
     Scaffold(
         floatingActionButton = {
@@ -93,9 +97,8 @@ fun MainScreen(navController: NavHostController) {
                     }
                 }
             }
-
             LazyVerticalGrid(columns = GridCells.Fixed(2)) {
-                items(pizzaList) { pizza ->
+                items(filteredPizzaList) { pizza ->
                     ShowPizza(
                         pizza = pizza,
                         navController = navController
@@ -113,7 +116,6 @@ fun MenuItems(
     modifier: Modifier = Modifier,
     onValueUpdate: (String) -> Unit
 ) {
-
     TextButton(
         onClick = { onValueUpdate(menuName) },
         elevation = ButtonDefaults.elevation(0.dp),
@@ -133,9 +135,7 @@ fun MenuItems(
             ),
         )
     }
-
 }
-
 @Composable
 fun ShowPizza(
     pizza: Pizza,
@@ -220,7 +220,7 @@ fun ShowPizza(
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
 @Composable
 fun ScreenPreview() {
-    PizzaHutAppTheme {
+    OrderPizzaTheme {
         MainScreen(rememberNavController())
     }
 }

@@ -49,7 +49,7 @@ import org.d3if0020.assesment2mobpro.R
 import org.d3if0020.assesment2mobpro.alert.DisplayAlertDialog
 import org.d3if0020.assesment2mobpro.database.AddressDb
 import org.d3if0020.assesment2mobpro.model.DetailViewModel
-import org.d3if0020.assesment2mobpro.ui.theme.PizzaHutAppTheme
+import org.d3if0020.assesment2mobpro.ui.theme.OrderPizzaTheme
 import org.d3if0020.assesment2mobpro.util.ViewModelFactory
 
 const val KEY_ID_ADDRESS = "idAddress"
@@ -96,7 +96,7 @@ fun AddressDetailScreen(navController: NavHostController, id: Long? = null) {
                         Text(text = stringResource(id = R.string.edit_alamat))
                 },
                 backgroundColor = MaterialTheme.colors.primary,
-                contentColor = MaterialTheme.colors.primary,
+                contentColor = Color.White,
 
                 actions = {
                     IconButton(onClick = {
@@ -179,7 +179,7 @@ fun FormAlamat(
         OutlinedTextField(
             value = alamat,
             onValueChange = { onAlamatChange(it) },
-            label = { Text(text = stringResource(R.string.alamatt)) },
+            label = { Text(text = stringResource(R.string.nama_alamat)) },
             keyboardOptions = KeyboardOptions(
                 capitalization = KeyboardCapitalization.Sentences
             ),
@@ -269,6 +269,24 @@ fun TypeDropdown(type: String, onTypeChange: (String) -> Unit) {
                     }) {
                         Text(text = "Kantor")
                     }
+                    DropdownMenuItem(onClick = {
+                        onTypeChange("Apartemen")
+                        expanded = false
+                    }) {
+                        Text(text = "Apartemen")
+                    }
+                    DropdownMenuItem(onClick = {
+                        onTypeChange("Asrama")
+                        expanded = false
+                    }) {
+                        Text(text = "Asrama")
+                    }
+                    DropdownMenuItem(onClick = {
+                        onTypeChange("Kosan")
+                        expanded = false
+                    }) {
+                        Text(text = "Kosan")
+                    }
                 }
             }
         }
@@ -305,7 +323,7 @@ fun DeleteAction(delete: () -> Unit) {
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
 @Composable
 fun AddressDetailScreenPreview() {
-    PizzaHutAppTheme {
+    OrderPizzaTheme {
         AddressDetailScreen(rememberNavController())
     }
 }

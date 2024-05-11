@@ -9,7 +9,7 @@ import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import org.d3if0020.assesment2mobpro.navigation.SetupNavGraph
-import org.d3if0020.assesment2mobpro.ui.theme.PizzaHutAppTheme
+import org.d3if0020.assesment2mobpro.ui.theme.OrderPizzaTheme
 
 
 class MainActivity : ComponentActivity() {
@@ -17,7 +17,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             val navController = rememberNavController()
-            PizzaHutAppTheme {
+            OrderPizzaTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background

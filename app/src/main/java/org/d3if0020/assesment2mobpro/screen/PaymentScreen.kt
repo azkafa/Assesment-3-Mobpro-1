@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -35,6 +34,7 @@ import androidx.navigation.compose.rememberNavController
 import org.d3if0020.assesment2mobpro.R
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import org.d3if0020.assesment2mobpro.navigation.Screen
 import java.text.NumberFormat
 import java.util.Locale
 
@@ -65,7 +65,7 @@ fun PaymentScreen(
                     Text(text = stringResource(id = R.string.payment))
                 },
                 backgroundColor = MaterialTheme.colors.primary,
-                contentColor = MaterialTheme.colors.primary
+                contentColor = Color.White
             )
         }
     ) { padding ->
@@ -146,14 +146,27 @@ fun PaymentScreen(
                         )
                     },
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp)
-                        .height(50.dp),
-                    colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFFF5722)),
+                        .weight(1f)
+                        .padding(horizontal = 8.dp),
+                    colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.primary),
                     shape = RoundedCornerShape(24.dp)
                 ) {
                     Text(
                         text = stringResource(R.string.share),
+                        style = MaterialTheme.typography.button,
+                        color = Color.White
+                    )
+                }
+                Button(
+                    onClick = { navController.navigate(Screen.Home.route) },
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(horizontal = 8.dp),
+                    colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.primary),
+                    shape = RoundedCornerShape(24.dp)
+                ) {
+                    Text(
+                        text = stringResource(R.string.done),
                         style = MaterialTheme.typography.button,
                         color = Color.White
                     )

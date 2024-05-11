@@ -30,7 +30,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import org.d3if0020.assesment2mobpro.R
 import org.d3if0020.assesment2mobpro.navigation.Screen
-import org.d3if0020.assesment2mobpro.ui.theme.PizzaHutAppTheme
+import org.d3if0020.assesment2mobpro.ui.theme.OrderPizzaTheme
 
 
 @Composable
@@ -51,7 +51,7 @@ fun SettingScreen(navController: NavHostController) {
                     Text(text = stringResource(id = R.string.settings))
                 },
                 backgroundColor = MaterialTheme.colors.primary,
-                contentColor = MaterialTheme.colors.primary
+                contentColor = Color.White
             )
         }
     ) { padding ->
@@ -88,13 +88,15 @@ fun SettingItem(title: String, icon: Int, onClick: () -> Unit) {
         Image(
             painter = painterResource(icon),
             contentDescription = "Icon",
-            modifier = Modifier.size(24.dp)
+            modifier = Modifier
+                .size(24.dp)
                 .align(Alignment.Top)
         )
         Spacer(modifier = Modifier.width(10.dp))
         Text(
             text = title,
-            modifier = Modifier.weight(1f)
+            modifier = Modifier
+                .weight(1f)
                 .align(Alignment.CenterVertically)
         )
         Icon(
@@ -110,7 +112,7 @@ fun SettingItem(title: String, icon: Int, onClick: () -> Unit) {
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
 @Composable
 fun SettingScreenPreview() {
-    PizzaHutAppTheme {
+    OrderPizzaTheme {
         SettingScreen(rememberNavController())
     }
 }
