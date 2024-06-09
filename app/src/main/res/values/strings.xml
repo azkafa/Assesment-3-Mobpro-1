@@ -26,8 +26,8 @@
 
     <string name="settings">Setting</string>
     <string name="address">Address</string>
-    <string name="payment_2">Payment</string>
-    <string name="delivery_address">Delivery Address\n</string>
+    <string name="feedback" translatable="false">Feedback</string>
+    <string name="delivery_address">Delivery Address</string>
     <string name="payment_method">"Payment Method "</string>
     <string name="add_address">Add Address</string>
     <string name="list_alamat_kosong">"Address has not been added "</string>
@@ -50,4 +50,9 @@
     <string name="grid" translatable="false">Grid view</string>
     <string name="coming_soon" translatable="false">Coming Soon:)</string>
     <string name="done" translatable="false">Home</string>
+
+    <string name="gambar" translatable="false">Gambar %1$s</string>
+    <string name="error" translatable="false">Gagal memuat data.. Koneksi error.</string>
+    <string name="try_again" translatable="false">Coba lagi</string>
+    <string name="main_address" translatable="false">Main Address</string>
 </resources>
