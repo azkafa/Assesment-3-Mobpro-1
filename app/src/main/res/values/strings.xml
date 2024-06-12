@@ -55,4 +55,17 @@
     <string name="error" translatable="false">Gagal memuat data.. Koneksi error.</string>
     <string name="try_again" translatable="false">Coba lagi</string>
     <string name="main_address" translatable="false">Main Address</string>
+    <string name="profil" translatable="false">Profil</string>
+    <string name="tutup" translatable="false">Tutup</string>
+    <string name="logout" translatable="false">Logout</string>
+
+    <string name="tambah_hewan" translatable="false">Tambah hewan</string>
+    <string name="nama_latin" translatable="false">Nama latin</string>
+    <string name="batal" translatable="false">Batal</string>
+    <string name="confirm_delete" translatable="false">Apakah Anda Ingin menghapus Gambar ini?</string>
+    <string name="delete" translatable="false">Hapus</string>
+    <string name="cancel" translatable="false">Batal</string>
+    <string name="deskripsi" translatable="false">test</string>
+    <string name="rating" translatable="false">test</string>
+    <string name="auth" translatable="false">test</string>
 </resources>

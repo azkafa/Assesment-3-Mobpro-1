@@ -9,6 +9,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import org.d3if0020.assesment3mobpro.data.getPizzaById
 import org.d3if0020.assesment3mobpro.model.DetailViewModel
+import org.d3if0020.assesment3mobpro.model.UserViewModel
 import org.d3if0020.assesment3mobpro.screen.AboutScreen
 import org.d3if0020.assesment3mobpro.screen.AddPizzaScreen
 import org.d3if0020.assesment3mobpro.screen.AddressDetailScreen
@@ -20,13 +21,13 @@ import org.d3if0020.assesment3mobpro.screen.PaymentScreen
 import org.d3if0020.assesment3mobpro.util.ViewModelFactory
 
 @Composable
-fun SetupNavGraph(navController: NavHostController, viewModelFactory: ViewModelFactory) {
+fun SetupNavGraph(navController: NavHostController, viewModelFactory: ViewModelFactory, userViewModel: UserViewModel) {
     NavHost(
         navController = navController,
         startDestination = Screen.Home.route
     ) {
         composable(route = Screen.Home.route) {
-            MainScreen(navController)
+            MainScreen(navController, userViewModel)
         }
         composable(route = Screen.About.route) {
             AboutScreen(navController)
@@ -35,7 +36,7 @@ fun SetupNavGraph(navController: NavHostController, viewModelFactory: ViewModelF
             DeliveryAddressScreen(navController)
         }
         composable(route = Screen.Feedback.route) {
-            FeedbackScreen(navController)
+            FeedbackScreen(navController,userViewModel)
         }
         composable(route = Screen.FormBaru.route) {
             AddressDetailScreen(navController)
