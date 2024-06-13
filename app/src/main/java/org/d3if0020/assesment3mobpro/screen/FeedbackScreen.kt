@@ -20,6 +20,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -64,7 +65,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -85,7 +85,7 @@ import kotlinx.coroutines.launch
 import org.d3if0020.assesment3mobpro.BuildConfig
 import org.d3if0020.assesment3mobpro.R
 import org.d3if0020.assesment3mobpro.alert.DeleteConfirmationDialog
-import org.d3if0020.assesment3mobpro.alert.HewanDialog
+import org.d3if0020.assesment3mobpro.alert.FeedbackDialog
 import org.d3if0020.assesment3mobpro.data.Feedback
 import org.d3if0020.assesment3mobpro.data.User
 import org.d3if0020.assesment3mobpro.model.ApiViewModel
@@ -105,14 +105,14 @@ fun FeedbackScreen(navController: NavHostController, userViewModel: UserViewMode
     val user by dataStore.userFlow.collectAsState(User())
 
     var showDialog by remember { mutableStateOf(false) }
-    var showHewanDialog by remember { mutableStateOf(false) }
+    var showFeedbackDialog by remember { mutableStateOf(false) }
     var showDeleteDialog by remember { mutableStateOf(false) }
     var currentFeedbackId by remember { mutableStateOf("") }
 
     var bitmap: Bitmap? by remember { mutableStateOf(null) }
     val launcher = rememberLauncherForActivityResult(CropImageContract()) {
         bitmap = getCroppedImage(context.contentResolver, it)
-        if (bitmap != null) showHewanDialog = true
+        if (bitmap != null) showFeedbackDialog = true
     }
 
     Scaffold(
@@ -167,7 +167,7 @@ fun FeedbackScreen(navController: NavHostController, userViewModel: UserViewMode
                 FloatingActionButton(onClick = {
                     val options = CropImageContractOptions(
                         null, CropImageOptions(
-                            imageSourceIncludeGallery = false,
+                            imageSourceIncludeGallery = true,
                             imageSourceIncludeCamera = true,
                             fixAspectRatio = true
                         )
@@ -176,7 +176,7 @@ fun FeedbackScreen(navController: NavHostController, userViewModel: UserViewMode
                 }) {
                     Icon(
                         imageVector = Icons.Default.Add,
-                        contentDescription = stringResource(id = R.string.tambah_hewan)
+                        contentDescription = stringResource(id = R.string.tambah_feedback)
                     )
                 }
             }
@@ -189,7 +189,7 @@ fun FeedbackScreen(navController: NavHostController, userViewModel: UserViewMode
             onDeleteRequest = { id ->
                 showDeleteDialog = true
                 currentFeedbackId = id
-                Log.d("MainScreen", "Current Hewan ID: $currentFeedbackId")
+                Log.d("MainScreen", "Current Feedback ID: $currentFeedbackId")
             },
             isUserLoggedIn = user.email.isNotEmpty()
         )
@@ -202,12 +202,12 @@ fun FeedbackScreen(navController: NavHostController, userViewModel: UserViewMode
                 showDialog = false
             }
         }
-        if (showHewanDialog) {
-            HewanDialog(
+        if (showFeedbackDialog) {
+            FeedbackDialog(
                 bitmap = bitmap,
-                onDismissRequest = { showHewanDialog = false }) { nama, deskripsi, rating ->
+                onDismissRequest = { showFeedbackDialog = false }) { nama, deskripsi, rating ->
                 viewModel.saveData(user.email, nama, deskripsi, rating, bitmap!!)
-                showHewanDialog = false
+                showFeedbackDialog = false
             }
         }
 
@@ -220,7 +220,7 @@ fun FeedbackScreen(navController: NavHostController, userViewModel: UserViewMode
             DeleteConfirmationDialog(
                 onDismissRequest = { showDeleteDialog = false },
                 onConfirm = {
-                    Log.d("MainScreen", "Deleting Hewan ID: $currentFeedbackId")
+                    Log.d("MainScreen", "Deleting Feedback ID: $currentFeedbackId")
                     viewModel.deleteData(user.email, currentFeedbackId)
                     showDeleteDialog = false
                 }
@@ -292,6 +292,96 @@ fun ScreenContent(
     }
 }
 
+@Composable
+fun ListItem(feedback: Feedback, onDeleteRequest: (String) -> Unit, isUserLoggedIn: Boolean, currentUserId: String) {
+    if (feedback.auth.isEmpty() || feedback.auth == currentUserId) {
+        Box(
+            modifier = Modifier
+                .padding(4.dp)
+                .border(1.dp, Color.Gray)
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(MaterialTheme.colors.surface)
+            ) {
+                Box {
+                    AsyncImage(
+                        model = ImageRequest.Builder(LocalContext.current)
+                            .data(FeedbackApi.getFeedbackUrl(feedback.gambar))
+                            .crossfade(true)
+                            .build(),
+                        contentDescription = stringResource(R.string.gambar, feedback.nama),
+                        contentScale = ContentScale.Crop,
+                        placeholder = painterResource(id = R.drawable.loading_img),
+                        error = painterResource(id = R.drawable.broken_img),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(150.dp)
+                    )
+                    if (isUserLoggedIn && feedback.auth == currentUserId) {
+                        IconButton(
+                            onClick = {
+                                if (feedback.id.isNotEmpty()) {
+                                    onDeleteRequest(feedback.id)
+                                } else {
+                                    Log.d("ListItem", "Invalid feedback ID")
+                                }
+                            },
+                            modifier = Modifier
+                                .align(Alignment.BottomEnd)
+                                .background(Color.White.copy(alpha = 0.0f))
+                        ) {
+                            Icon(
+                                imageVector = Icons.Filled.Delete,
+                                contentDescription = stringResource(R.string.delete),
+                                tint = Color.White.copy(alpha = 0.9f)
+                            )
+                        }
+                    }
+                }
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp)
+                ) {
+                    Column(
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier.padding(bottom = 4.dp)
+                        ) {
+                            val filledStars = feedback.rating.toInt()
+                            repeat(5) {
+                                Icon(
+                                    painter = painterResource(if (it < filledStars) R.drawable.ic_star else R.drawable.ic_star_outline),
+                                    contentDescription = null,
+                                    tint = Color.Unspecified,
+                                    modifier = Modifier.size(25.dp)
+                                )
+                            }
+                        }
+                        Text(
+                            text = feedback.nama,
+                            style = MaterialTheme.typography.h6,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 15.sp,
+                            color = MaterialTheme.colors.onSurface
+                        )
+                        Text(
+                            text = feedback.deskripsi,
+                            style = MaterialTheme.typography.body2,
+                            fontSize = 14.sp,
+                            color = MaterialTheme.colors.onSurface
+                        )
+                    }
+                }
+            }
+        }
+    }
+}
+
 private fun getCroppedImage(
     resolver: ContentResolver,
     result: CropImageView.CropResult
@@ -310,85 +400,6 @@ private fun getCroppedImage(
         ImageDecoder.decodeBitmap(source)
     }
 }
-
-@Composable
-fun ListItem(feedback: Feedback, onDeleteRequest: (String) -> Unit, isUserLoggedIn: Boolean, currentUserId: String) {
-
-    if (feedback.auth.isEmpty() || feedback.auth == currentUserId) {
-        Box(
-            modifier = Modifier
-                .padding(4.dp)
-                .border(1.dp, Color.Gray),
-            contentAlignment = Alignment.BottomCenter
-        ) {
-            AsyncImage(
-                model = ImageRequest.Builder(LocalContext.current)
-                    .data(FeedbackApi.getFeedbackUrl(feedback.gambar))
-                    .crossfade(true)
-                    .build(),
-                contentDescription = stringResource(R.string.gambar, feedback.nama),
-                contentScale = ContentScale.Crop,
-                placeholder = painterResource(id = R.drawable.loading_img),
-                error = painterResource(id = R.drawable.broken_img),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(4.dp)
-            )
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(4.dp)
-                    .background(Color(red = 0f, green = 0f, blue = 0f, alpha = 0.5f))
-                    .padding(4.dp)
-            ) {
-                Column(modifier = Modifier.weight(1f)) {
-                    Text(
-                        text = feedback.nama,
-                        fontWeight = FontWeight.Bold,
-                        color = Color.White
-                    )
-                    Text(
-                        text = feedback.deskripsi,
-                        fontStyle = FontStyle.Italic,
-                        fontSize = 14.sp,
-                        color = Color.White
-                    )
-                    Row {
-                        val filledStars = feedback.rating.toInt()
-                        repeat(5) {
-                            Icon(
-                                painter = painterResource(if (it < filledStars) R.drawable.ic_star else R.drawable.ic_star_outline),
-                                contentDescription = null,
-                                tint = Color.White,
-                                modifier = Modifier.size(16.dp) 
-                            )
-                        }
-                    }
-                }
-                if (isUserLoggedIn && feedback.auth == currentUserId) {
-                    IconButton(
-                        onClick = {
-                            if (feedback.id.isNotEmpty()) {
-                                onDeleteRequest(feedback.id)
-                            } else {
-                                Log.d("ListItem", "Invalid feedback ID")
-                            }
-                        },
-                        modifier = Modifier.align(Alignment.CenterVertically)
-                    ) {
-                        Icon(
-                            imageVector = Icons.Filled.Delete,
-                            contentDescription = stringResource(R.string.delete),
-                            tint = Color.White
-                        )
-                    }
-                }
-            }
-        }
-    }
-}
-
-
 
 private suspend fun signIn(context: Context, dataStore: UserDataStore, userViewModel: UserViewModel) {
     val googleIdOption: GetGoogleIdOption = GetGoogleIdOption.Builder()

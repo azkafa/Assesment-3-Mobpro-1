@@ -207,8 +207,6 @@ fun FormAlamat(
     }
 }
 
-
-
 @Composable
 fun ToggleButton(
     checked: Boolean,
@@ -221,7 +219,6 @@ fun ToggleButton(
         modifier = modifier
     )
 }
-
 
 @Composable
 fun TypeDropdown(type: String, onTypeChange: (String) -> Unit) {

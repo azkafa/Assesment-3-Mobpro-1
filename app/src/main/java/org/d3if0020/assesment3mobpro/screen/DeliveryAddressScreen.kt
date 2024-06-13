@@ -122,10 +122,8 @@ fun DeliveryAddressScreen(navController: NavHostController) {
     }
 }
 
-
-
     @Composable
-fun ScreenContent(showList: Boolean, modifier: Modifier, navController: NavHostController) {
+    fun ScreenContent(showList: Boolean, modifier: Modifier, navController: NavHostController) {
     val context = LocalContext.current
     val db = AddressDb.getInstance(context)
     val factory = ViewModelFactory(db.dao)

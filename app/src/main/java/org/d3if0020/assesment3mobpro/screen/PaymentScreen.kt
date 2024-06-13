@@ -178,7 +178,6 @@ fun PaymentScreen(
     }
 }
 
-
 private fun formatHarga(harga: String?): String {
     return if (!harga.isNullOrEmpty()) {
         val hargaInt = harga.toFloatOrNull()
@@ -203,7 +202,6 @@ private fun shareData(context: Context, message: String) {
         context.startActivity(shareIntent)
     }
 }
-
 
 @Preview(showBackground = true)
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)

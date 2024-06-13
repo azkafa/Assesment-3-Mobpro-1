@@ -103,7 +103,7 @@ fun ProfilDialog(
 fun DialogPreview() {
     OrderPizzaTheme{
         ProfilDialog(
-            user = User("Azka F.a", "azkaf.a1305@gmail.com", ""),
+            user = User("", "", ""),
             onDismissRequest = {},
             onConfirmation = {}
         )

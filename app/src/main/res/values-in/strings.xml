@@ -22,7 +22,6 @@
 
     <string name="settings">Pengaturan</string>
     <string name="address">Alamat</string>
-    <string name="payment_2">Pembayaran</string>
     <string name="delivery_address">Alamat Pengiriman</string>
     <string name="payment_method">Metode Pembayaran</string>
     <string name="add_address">Tambah Alamat</string>
@@ -42,4 +41,21 @@
     <string name="pesan_hapus">"Hapus Alamat ini? "</string>
     <string name="tombol_hapus">Hapus</string>
     <string name="tombol_batal">Batal</string>
+
+    <string name="gambar">Gambar %1$s</string>
+    <string name="error">Gagal memuat data.. Koneksi error.</string>
+    <string name="try_again">Coba lagi</string>
+    <string name="main_address">Alamat Utama</string>
+    <string name="profil" >Profil</string>
+    <string name="tutup">Tutup</string>
+    <string name="logout">Logout</string>
+
+    <string name="tambah_feedback">Tambah Feedback</string>
+    <string name="nama_feedback">Nama</string>
+    <string name="batal">Batal</string>
+    <string name="confirm_delete">Apakah Anda Ingin menghapus Rating ini?</string>
+    <string name="delete">Hapus</string>
+    <string name="cancel">Batal</string>
+    <string name="deskripsi">Deskripsi Pizza</string>
+    <string name="rating">Rating</string>
 </resources>

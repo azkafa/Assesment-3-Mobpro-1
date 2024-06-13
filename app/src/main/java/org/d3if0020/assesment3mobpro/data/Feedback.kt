@@ -7,5 +7,4 @@ data class Feedback(
     val gambar: String,
     val rating: String,
     val auth: String,
-    val mine: Int
 )

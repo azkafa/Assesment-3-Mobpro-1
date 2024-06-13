@@ -16,7 +16,6 @@ import retrofit2.http.POST
 import retrofit2.http.Part
 import retrofit2.http.Query
 
-
 private const val BASE_URL = "https://api.azkafa.my.id/"
 
 private val moshi = Moshi.Builder()

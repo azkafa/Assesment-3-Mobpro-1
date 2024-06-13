@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
@@ -25,6 +26,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -37,7 +39,7 @@ import org.d3if0020.assesment3mobpro.R
 import org.d3if0020.assesment3mobpro.ui.theme.OrderPizzaTheme
 
 @Composable
-fun HewanDialog(
+fun FeedbackDialog(
     bitmap: Bitmap?,
     onDismissRequest: () -> Unit,
     onConfirmation: (String, String, String) -> Unit
@@ -55,17 +57,19 @@ fun HewanDialog(
                 modifier = Modifier.padding(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                Image(
-                    bitmap = bitmap!!.asImageBitmap(),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .aspectRatio(1f)
-                )
+                bitmap?.let {
+                    Image(
+                        bitmap = it.asImageBitmap(),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .aspectRatio(1f)
+                    )
+                }
                 OutlinedTextField(
                     value = nama,
                     onValueChange = { nama = it },
-                    label = { Text(text = stringResource(id = R.string.nama)) },
+                    label = { Text(text = stringResource(id = R.string.nama_feedback)) },
                     maxLines = 1,
                     keyboardOptions = KeyboardOptions(
                         capitalization = KeyboardCapitalization.Words,
@@ -77,12 +81,14 @@ fun HewanDialog(
                     value = deskripsi,
                     onValueChange = { deskripsi = it },
                     label = { Text(text = stringResource(id = R.string.deskripsi)) },
-                    maxLines = 1,
+                    maxLines = 5,
                     keyboardOptions = KeyboardOptions(
                         capitalization = KeyboardCapitalization.Sentences,
                         imeAction = ImeAction.Next
                     ),
-                    modifier = Modifier.padding(top = 8.dp)
+                    modifier = Modifier
+                        .padding(top = 8.dp)
+                        .heightIn(min = 100.dp)
                 )
                 Text(
                     text = stringResource(id = R.string.rating),
@@ -98,7 +104,8 @@ fun HewanDialog(
                             contentDescription = null,
                             modifier = Modifier
                                 .padding(horizontal = 4.dp)
-                                .clickable { rating = i }
+                                .clickable { rating = i },
+                            tint = Color.Unspecified
                         )
                     }
                 }
@@ -132,9 +139,10 @@ fun HewanDialog(
 @Composable
 fun AddDialogPreview() {
     OrderPizzaTheme {
-        HewanDialog(
-            bitmap = null,
+        FeedbackDialog(
+            bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888),
             onDismissRequest = {}
         ) { _, _, _ -> }
     }
 }
+

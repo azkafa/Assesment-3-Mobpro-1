@@ -79,9 +79,11 @@ fun AddPizzaScreen(navController: NavHostController, pizza: Pizza?, viewModel: D
     val pizzaQuantity = remember { mutableIntStateOf(pizza?.quantity ?: 0) }
     val selectedTopping = remember { mutableStateOf<Topping?>(null) }
     val showResult = remember { mutableStateOf(false) }
+
+    val context = LocalContext.current
     val resultMessage = remember { mutableStateOf("") }
     val errorMessage = remember { mutableStateOf("") }
-    val context = LocalContext.current
+
     val addressList = viewModel.getAllAddresses().collectAsState(initial = emptyList())
     val selectedAddress = remember { mutableStateOf<Address?>(null) }
     val isMainAddressChecked = remember { mutableStateOf(false) }
@@ -109,6 +111,9 @@ fun AddPizzaScreen(navController: NavHostController, pizza: Pizza?, viewModel: D
             }
             selectedTopping.value == null -> {
                 errorMessage.value = context.getString(R.string.error_no_topping)
+            }
+            selectedAddress.value == null -> {
+                errorMessage.value = context.getString(R.string.error_empty_address)
             }
             else -> {
                 errorMessage.value = ""
@@ -428,7 +433,6 @@ fun AddressDropdown(
         }
     }
 }
-
 
 @Composable
 fun IconPicker(showIcon: Boolean, message: String) {

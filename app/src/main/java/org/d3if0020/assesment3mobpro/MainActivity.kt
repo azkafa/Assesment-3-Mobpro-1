@@ -15,14 +15,10 @@ import org.d3if0020.assesment3mobpro.navigation.SetupNavGraph
 import org.d3if0020.assesment3mobpro.ui.theme.OrderPizzaTheme
 import org.d3if0020.assesment3mobpro.util.ViewModelFactory
 
-
-
-
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Initialize the database and get the AddressDao
         val database = AddressDb.getInstance(this)
         val addressDao = database.dao
         val viewModelFactory = ViewModelFactory(addressDao)
