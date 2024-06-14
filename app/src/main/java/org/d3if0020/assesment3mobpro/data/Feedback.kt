@@ -5,6 +5,7 @@ data class Feedback(
     val nama: String,
     val deskripsi: String,
     val gambar: String,
+    val datetime: String,
     val rating: String,
     val auth: String,
 )

@@ -123,8 +123,8 @@ fun PaymentScreen(
             Text(
                 text = alamatPengiriman ?: "",
                 style = MaterialTheme.typography.body2,
-                textAlign = TextAlign.Center, // Ensure the text is centered
-                modifier = Modifier.align(Alignment.CenterHorizontally).padding(bottom = 16.dp) // Center the text horizontally
+                textAlign = TextAlign.Center,
+                modifier = Modifier.align(Alignment.CenterHorizontally).padding(bottom = 16.dp)
             )
             Divider(modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp))
 
